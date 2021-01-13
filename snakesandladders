@@ -1,0 +1,73 @@
+print("****************WELCOME TO SNAKES AND LADDERS GAME***************")
+
+p1=input("Enter name of player 1: ")
+p2=input("Enter name of player 2: ")
+
+print("####### LET'S BEGIN #######")
+
+def insnakes(pos):
+    for kv in snakes:
+            if kv==pos:
+                pos=snakes[kv]
+    return pos
+def inladders(pos):
+    for kv in ladders:
+            if kv==pos:
+                pos=ladders[kv]
+    return pos
+from random import randint
+pos1=0
+pos2=0
+c=0
+snakes={17 : 7, 54 : 34, 62 : 19, 98 : 79}
+ladders={3 : 38, 24 : 33, 42 : 93, 72 : 84}
+while(pos1<100 and pos2<100):
+    if c==0:
+        i=input(p1+": ")
+        if i== "roll":
+            i = randint(1, 6)
+            print("You got a",i)
+            pos1=pos1+i
+            pos1=insnakes(pos1)
+            pos1=inladders(pos1)
+            if pos1<100:
+                print("Current Position: ",pos1)
+                
+        else:
+            i=int(i)
+            if i<0 or i>20:
+                print("Wrong Input!!! Try Again")
+                continue
+            print("You got a",i)
+            pos1=pos1+i
+            pos1=insnakes(pos1)
+            pos1=inladders(pos1)
+            if pos1<100:
+                print("Current Position: ",pos1) 
+        c=1;
+    else:
+        i=input(p2+": ")
+        if i== "roll":
+            i = randint(1, 6)
+            print("You got a",i)
+            pos2=pos2+i
+            pos2=insnakes(pos2)
+            pos2=inladders(pos2)
+            if pos2<100:
+                print("Current Position: ",pos2)
+        else:
+            i=int(i)
+            if i<0 or i>20:
+                print("Wrong Input!!! Try Again")
+                continue
+            print("You got a",i)
+            pos2=pos2+i
+            pos2=insnakes(pos2)
+            pos2=inladders(pos2)
+            if pos2<100:
+                print("Current Position: ",pos2)
+        c=0;
+if pos1>=100:
+    print("$$$$$$$$ "+p1+" is the WINNER"+" $$$$$$$$")
+elif pos2>=100:
+    print("$$$$$$$$ "+p2+" is the WINNER"+" $$$$$$$$")
